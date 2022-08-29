@@ -1,16 +1,11 @@
 import './index.css'
 import ReactDOM from 'react-dom'
 import React from 'react'
-import Primeiro from './componentes/basicos/Primeiro'
-import CompParametro from './componentes/basicos/ComParametro'
-import Fragmento from './componentes/basicos/Fragmento'
+import App from './App'
+
 
 
 ReactDOM.render(
-    <div>
-        <Primeiro/>
-        <CompParametro titulo="Situação do Aluno" aluno="Pedro Silva" nota={5.3} />
-        <Fragmento/>
-    </div>,
+    <App />,
     document.getElementById('root')
 )
