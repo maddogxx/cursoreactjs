@@ -8,6 +8,7 @@ import Fragmento from './componentes/basicos/Fragmento'
 import Aleatorio from "./componentes/basicos/Aleatorio";
 import Card from "./componentes/layout/Card";
 import Familia from "./componentes/basicos/Familia";
+import FamiliaMembro from "./componentes/basicos/FamiliaMembro";
 
 
 // Forma reduzida usando arrow function
@@ -16,7 +17,11 @@ export default () => (
         <h1>Fundamentos React</h1>
         <div className="Cards">
             <Card titulo="#05 - Componente com Filhos" color="#00C8F8">
-                <Familia sobrenome="Lancaster"/>
+                <Familia sobrenome="Lancaster">
+                    <FamiliaMembro nome="Pedro" />
+                    <FamiliaMembro nome="Gustavo" />
+                    <FamiliaMembro nome="Sarah" />
+                </Familia>
             </Card>
 
             <Card titulo="#04 - Desafio Número Aleatório" color="#FA6900">
