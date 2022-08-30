@@ -9,13 +9,18 @@ import Aleatorio from "./componentes/basicos/Aleatorio";
 import Card from "./componentes/layout/Card";
 import Familia from "./componentes/basicos/Familia";
 import FamiliaMembro from "./componentes/basicos/FamiliaMembro";
+import ListaAlunos from "./componentes/repeticao/ListaAlunos";
 
 
 // Forma reduzida usando arrow function
+// eslint-disable-next-line import/no-anonymous-default-export
 export default () => (
     <div className="App">
         <h1>Fundamentos React</h1>
         <div className="Cards">
+            <Card titulo="#06 - Repeticao" color="#FF4C65">
+                <ListaAlunos />
+            </Card>
             <Card titulo="#05 - Componente com Filhos" color="#00C8F8">
                 <Familia sobrenome="Lancaster">
                     <FamiliaMembro nome="Pedro" />
