@@ -8,7 +8,7 @@ export default (props) => {
         return (
             <tr key={produto.id}>
                 <td>{produto.nome}</td>
-                <td>{produto.valor}</td>
+                <td>R$ {produto.valor.toFixed(2).replace('.', ',')}</td>
             </tr>
         );
     });
