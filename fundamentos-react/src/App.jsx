@@ -12,6 +12,7 @@ import FamiliaMembro from "./componentes/basicos/FamiliaMembro";
 import ListaAlunos from "./componentes/repeticao/ListaAlunos";
 import TabelaProdutos from "./componentes/repeticao/TabelaProdutos";
 import ParOuImpar from "./componentes/condicional/ParOuImpar";
+import Aprovados from "./componentes/condicional/Aprovados";
 
 
 // Forma reduzida usando arrow function
@@ -23,7 +24,8 @@ export default () => (
             <Card titulo="#08 - Renderização Condicional" color="#efcc6d">
                 <ParOuImpar numero={21}/>
                 <ParOuImpar numero={20}/>
-
+                <Aprovados nome="Adalberto" nota={6.5} />
+                <Aprovados nome="Aline" nota={8.5} />
             </Card>
 
             <Card titulo="#07 - Desafio Repetição" color="#B059A3">
