@@ -11,6 +11,7 @@ import Familia from "./componentes/basicos/Familia";
 import FamiliaMembro from "./componentes/basicos/FamiliaMembro";
 import ListaAlunos from "./componentes/repeticao/ListaAlunos";
 import TabelaProdutos from "./componentes/repeticao/TabelaProdutos";
+import ParOuImpar from "./componentes/condicional/ParOuImpar";
 
 
 // Forma reduzida usando arrow function
@@ -19,6 +20,12 @@ export default () => (
     <div className="App">
         <h1>Fundamentos React</h1>
         <div className="Cards">
+            <Card titulo="#08 - Renderização Condicional" color="#efcc6d">
+                <ParOuImpar numero={21}/>
+                <ParOuImpar numero={20}/>
+
+            </Card>
+
             <Card titulo="#07 - Desafio Repetição" color="#B059A3">
                 <TabelaProdutos />
             </Card>
