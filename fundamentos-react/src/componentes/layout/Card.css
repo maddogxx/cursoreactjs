@@ -23,3 +23,7 @@
     padding: 20px;
     
 }
+
+.Card table, th, td {
+    border: 1px solid black;
+}

@@ -10,6 +10,7 @@ import Card from "./componentes/layout/Card";
 import Familia from "./componentes/basicos/Familia";
 import FamiliaMembro from "./componentes/basicos/FamiliaMembro";
 import ListaAlunos from "./componentes/repeticao/ListaAlunos";
+import TabelaProdutos from "./componentes/repeticao/TabelaProdutos";
 
 
 // Forma reduzida usando arrow function
@@ -18,7 +19,10 @@ export default () => (
     <div className="App">
         <h1>Fundamentos React</h1>
         <div className="Cards">
-            <Card titulo="#06 - Repeticao" color="#FF4C65">
+            <Card titulo="#07 - Desafio Repetição" color="#B059A3">
+                <TabelaProdutos />
+            </Card>
+            <Card titulo="#06 - Repetição" color="#FF4C65">
                 <ListaAlunos />
             </Card>
             <Card titulo="#05 - Componente com Filhos" color="#00C8F8">
