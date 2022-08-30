@@ -14,6 +14,7 @@ import TabelaProdutos from "./componentes/repeticao/TabelaProdutos";
 import ParOuImpar from "./componentes/condicional/ParOuImpar";
 import Aprovados from "./componentes/condicional/Aprovados";
 import DiretaPai from "./componentes/comunicacao/DiretaPai";
+import IndiretaPai from "./componentes/comunicacao/IndiretaPai";
 
 
 // Forma reduzida usando arrow function
@@ -22,6 +23,10 @@ export default () => (
     <div className="App">
         <h1>Fundamentos React</h1>
         <div className="Cards">
+            <Card titulo="#10 - Comunicação Indireta" color="#687e28">
+                <IndiretaPai />
+            </Card>
+
             <Card titulo="#09 - Comunicação Direta" color="#212c56">
                 <DiretaPai />
             </Card>
