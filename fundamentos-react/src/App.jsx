@@ -16,6 +16,7 @@ import Aprovados from "./componentes/condicional/Aprovados";
 import DiretaPai from "./componentes/comunicacao/DiretaPai";
 import IndiretaPai from "./componentes/comunicacao/IndiretaPai";
 import Input from "./componentes/formulario/Input";
+import Contador from "./componentes/contador/Contador";
 
 
 // Forma reduzida usando arrow function
@@ -24,6 +25,9 @@ export default () => (
     <div className="App">
         <h1>Fundamentos React</h1>
         <div className="Cards">
+            <Card titulo="#12 - Contador" color="#887674">
+                <Contador numeroInicial={10}/>
+            </Card>
             <Card titulo="#11 - Componente Controlado (Input)" color="#340b07">
                 <Input />
             </Card>
