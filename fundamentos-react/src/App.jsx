@@ -17,6 +17,7 @@ import DiretaPai from "./componentes/comunicacao/DiretaPai";
 import IndiretaPai from "./componentes/comunicacao/IndiretaPai";
 import Input from "./componentes/formulario/Input";
 import Contador from "./componentes/contador/Contador";
+import Mega from "./componentes/mega/Mega";
 
 
 // Forma reduzida usando arrow function
@@ -25,6 +26,9 @@ export default () => (
     <div className="App">
         <h1>Fundamentos React</h1>
         <div className="Cards">
+            <Card titulo="#13 - Desafio Megasena" color="#ffa58b">
+                <Mega/>
+            </Card>
             <Card titulo="#12 - Contador" color="#887674">
                 <Contador numeroInicial={10}/>
             </Card>
