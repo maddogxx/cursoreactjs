@@ -2,9 +2,9 @@ import React from "react";
 
 export default function DisplayMega(props) {
 
-    const valores = props.numeros.map(n => {
+    const valores = props.numeros.map((n, i) => {
         return (
-            <span>{n < 10 ? "0" + n : n} </span>
+            <span key={i}>{n < 10 ? "0" + n : n} </span>
         );
     });
 
