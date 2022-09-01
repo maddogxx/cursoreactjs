@@ -4,7 +4,7 @@ import React from "react";
 export default function Content() {
     return (
         <main className="Content">
-            Menu
+            Component Content
         </main>
     );
 }
