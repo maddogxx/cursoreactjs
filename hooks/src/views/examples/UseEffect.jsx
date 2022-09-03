@@ -19,9 +19,11 @@ function calcFatorial(n) {
 const UseEffect = (props) => {
     const [number, setNumber] = useState(1);
     const [fatorial, setFatorial] = useState(1);
+    const [tipo, setTipo] = useState("Ímpar");
 
     useEffect(function() {
         setFatorial(calcFatorial(number));
+        setTipo(number % 2 === 0 ? "Par" : "Ímpar");
 
     }, [number]);
 
@@ -46,10 +48,16 @@ const UseEffect = (props) => {
                     <span className="text">Fatorial: </span>
                     <span className="text red">{fatorial < 0 ? "Não Existe" : fatorial}</span>
                 </div>
-                <input type="number" className="input" value={number} onChange={e => setNumber(e.target.value)} />
+                <input type="number" className="input" value={number} onChange={e => setNumber(e.target.value)} max="20"/>
             </div>
 
             <SectionTitle title="Exercício #02"/>
+            <div className="center">
+                <div>
+                    <span className="text">O número é </span>
+                    <span className="text red">{tipo}</span>
+                </div>
+            </div>
 
         </div>
     )
