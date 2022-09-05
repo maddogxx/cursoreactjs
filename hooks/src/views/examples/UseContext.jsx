@@ -5,14 +5,7 @@ import DataContext from '../../data/DataContext';
 
 
 const UseContext = (props) => {
-    const {state, setState} = useContext(DataContext);
-
-    function addNumber(delta) {
-        setState({
-            ...state,
-            number: state.number + delta
-        });
-    }
+    const {number, text, setNumber} = useContext(DataContext);
 
     return (
         <div className="UseContext">
@@ -22,11 +15,11 @@ const UseContext = (props) => {
             />
             <SectionTitle title="Exercício #01"/>
             <div className="center">
-                <span className="text">{state.text}</span>
-                <span className="text">{state.number}</span>
+                <span className="text">{text}</span>
+                <span className="text">{number}</span>
                 <div>
-                    <button className="btn" onClick={() => addNumber(-1)}>-1</button>
-                    <button className="btn" onClick={() => addNumber(1)}>+1</button>
+                    <button className="btn" onClick={() => setNumber(number -1)}>-1</button>
+                    <button className="btn" onClick={() => setNumber(number + 1)}>+1</button>
                 </div>
             </div>
         </div>

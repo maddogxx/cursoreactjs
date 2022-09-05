@@ -11,8 +11,20 @@ import DataContext, {data} from '../data/DataContext';
 const App = props => {
     const [state, setState] = useState(data);
 
+    function updateState(key, value) {
+        setState({
+            ...state,
+            [key]: value
+        });
+    }
+
     return (
-        <DataContext.Provider value={{state, setState}}>
+        <DataContext.Provider value={{
+            number: state.number,
+            text: state.text,
+            setNumber: n => updateState("number", n),
+            setText: t => updateState("text", t)}}>
+
             <div className="App">
                 <Router>
                     <Menu />
