@@ -10,7 +10,8 @@ export default function Inicio() {
       height: "100vh"
     }}>
       <Navegador destino="/exemplo" texto="Exemplo Componente" cor="crimson"/>
-      <Navegador destino="/estiloso" texto="Texto com estilo"/>
+      <Navegador destino="/estiloso" texto="Texto com estilo" />
+      <Navegador destino="/navegacao" texto="Navegação #01" cor="green"/>
     </div>
   );
 }
