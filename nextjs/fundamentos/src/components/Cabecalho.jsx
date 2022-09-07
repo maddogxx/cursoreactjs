@@ -1,7 +1,7 @@
-export default function Cabecalho() {
+export default function Cabecalho(props) {
     return (
-        <div>
-            Fundamentos de Next.js & React
-        </div>
+        <header>
+            <h1>{props.titulo}</h1>
+        </header>
     );
 }
