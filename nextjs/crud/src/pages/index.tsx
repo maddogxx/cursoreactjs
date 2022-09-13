@@ -1,7 +1,8 @@
 import Botao from "../components/Botao";
 import Layout from "../components/Layout";
-import Tabela from "../components/Tabela";
+//import Tabela from "../components/Tabela";
 import Cliente from "../core/Cliente";
+import Formulario from "../components/Formulario";
 
 function clienteSelecionado(cliente: Cliente) {
   console.log(`Alterar ${cliente.nome}`);
@@ -26,9 +27,15 @@ export default function Home() {
     `}>
       <Layout titulo="Cadastro Simples">
         <div className="flex justify-end">
-          <Botao estilo="mb-4">Novo cliente</Botao>
+          <Botao cor="green" estilo="mb-4">Novo cliente</Botao>
         </div>
-        <Tabela clientes={clientes} clienteSelecionado={clienteSelecionado} clienteExcluido={clienteExcluido}></Tabela>
+        {/*
+        <Tabela 
+          clientes={clientes} 
+          clienteSelecionado={clienteSelecionado} 
+          clienteExcluido={clienteExcluido} />
+        */}
+        <Formulario />        
       </Layout>
     </div>
   );
