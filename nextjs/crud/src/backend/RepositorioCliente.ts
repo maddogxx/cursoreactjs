@@ -3,12 +3,12 @@ import { PrismaClient } from '@prisma/client'
 import Cliente from "../core/Cliente";
 import RepositorioClienteInterface from "./RepositorioClienteInterface";
 
-const prisma = new PrismaClient()
-
+const prisma = new PrismaClient();
 export default class RepositorioCliente implements RepositorioClienteInterface {
 
     async salvar(cliente: Cliente): Promise<Cliente> {
         const novoCliente = cliente.id ? (
+            
             await prisma.cliente.update({
                 where: {
                     id: cliente.id
