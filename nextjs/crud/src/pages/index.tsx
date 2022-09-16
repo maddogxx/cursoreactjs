@@ -32,6 +32,36 @@ export default function Home() {
     });
   
     setClientes(listaClientes);
+    setVisivel("tabela");
+  }
+
+  async function salvarDadosCliente(cliente: Cliente) {
+    const idStr = cliente.id === null ? "": `"id": "${cliente.id}",`;
+
+    let corpo: BodyInit = `{${idStr} "nome": "${cliente.nome}", "idade": ${cliente.idade}}`;
+
+    const res = await fetch("/api/cliente", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: corpo
+    });
+  }
+
+  async function excluirDadosCliente(cliente: Cliente) {
+    let corpo: BodyInit = `{
+      "id": "${cliente.id}", 
+      "nome": "${cliente.nome}",
+      "idade": ${cliente.idade}}`;
+
+    await fetch("/api/cliente", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: corpo
+    });
   }
 
   function clienteSelecionado(cliente: Cliente) {
@@ -39,8 +69,9 @@ export default function Home() {
     setVisivel("form");
   }
   
-  function clienteExcluido(cliente: Cliente) {
-    console.log(`Excluir ${cliente.nome}`);
+  async function clienteExcluido(cliente: Cliente) {
+    await excluirDadosCliente(cliente);
+    obterListaClientes();
   }
   
   function novoCliente() {
@@ -48,8 +79,9 @@ export default function Home() {
     setVisivel("form");
   }
 
-  function salvarCliente(cliente: Cliente) {
-    console.log(cliente);
+  async function salvarCliente(cliente: Cliente) {
+    await salvarDadosCliente(cliente);
+    obterListaClientes();
   }
 
   return (

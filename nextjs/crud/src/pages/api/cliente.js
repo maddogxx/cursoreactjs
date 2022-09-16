@@ -1,18 +1,27 @@
 import RepositorioCliente from "../../backend/RepositorioCliente";
+import Cliente from "../../core/Cliente";
 
 export default async function handler(req, res) {
+  console.log("chegou aqui");
+
   const repo = new RepositorioCliente();
   if (req.method === "GET") {
-    let cli = [];
-
-    cli = await repo.consultarTodos();
+    let cli = await repo.consultarTodos();
     
     res.status(200).json(cli);
   } else if (req.method === "POST") {
+    const corpo = req.body;
     
-    
-    //repo.salvar(new Cliente("Amanda", 15));
-    res.status(200).json({ name: 'John Doe' })
+    console.log("Corpo", corpo);
+
+    let salvo = repo.salvar(new Cliente(corpo.nome, corpo.idade, corpo?.id));
+    res.status(200).json(salvo);
+  } else if (req.method === "DELETE") {
+    const corpo = req.body;
+
+    repo.excluir(new Cliente(corpo.nome, corpo.idade, corpo.id));
+
+    res.status(200).json("{msg: Salvo}");
   }
 
 }

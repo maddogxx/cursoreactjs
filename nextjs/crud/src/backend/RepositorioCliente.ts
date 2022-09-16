@@ -9,10 +9,9 @@ export default class RepositorioCliente implements RepositorioClienteInterface {
 
     async salvar(cliente: Cliente): Promise<ClienteDB> {
         const novoCliente = cliente.id ? (
-            
             await prisma.cliente.update({
                 where: {
-                    id: cliente.id
+                    id: `${cliente.id}`
                 },
                 data: {
                     nome: cliente.nome,
@@ -46,10 +45,6 @@ export default class RepositorioCliente implements RepositorioClienteInterface {
         let clientes: ClienteDB[] = [];
 
         clientes = await prisma.cliente.findMany();
-
-//        resultado.forEach(cliente => {
-//            clientes.push(new Cliente(cliente.nome, cliente.idade, cliente.id));
-//        });
 
         return clientes;
     }
