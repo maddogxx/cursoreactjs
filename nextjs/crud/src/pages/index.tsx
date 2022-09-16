@@ -2,18 +2,16 @@ import Botao from "../components/Botao";
 import Layout from "../components/Layout";
 import Tabela from "../components/Tabela";
 import Cliente from "../core/Cliente";
+
 import Formulario from "../components/Formulario";
 
 import { useEffect, useState } from "react";
 
-
-
-export default function Home(props) {
-
+export default function Home() {
   const [cliente, setCliente] = useState<Cliente>(Cliente.vazio());
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [visivel, setVisivel] = useState<"tabela" | "form">("tabela");
-
+  
 //  const clientes = [
 //    new Cliente("Ana", 15, "1"),
 //    new Cliente("Ken", 26, "2"),
@@ -21,8 +19,20 @@ export default function Home(props) {
 //  ];
 
   useEffect(() => {
-    setClientes(props.data);
+    obterListaClientes();
   }, []);
+
+  async function obterListaClientes() {
+    let listaClientes: Cliente[] = [];
+    const res = await fetch("/api/cliente");
+    const dados = await res.json();
+
+    dados.forEach(d => {
+      listaClientes.push(new Cliente(d.nome, d.idade, d.id));
+    });
+  
+    setClientes(listaClientes);
+  }
 
   function clienteSelecionado(cliente: Cliente) {
     setCliente(cliente);

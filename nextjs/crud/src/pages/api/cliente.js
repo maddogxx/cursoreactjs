@@ -1,19 +1,17 @@
-import Cliente from "../../core/Cliente";
 import RepositorioCliente from "../../backend/RepositorioCliente";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const repo = new RepositorioCliente();
   if (req.method === "GET") {
-    const cli = [];
+    let cli = [];
 
-    repo.salvar(new Cliente("Amanda", 15));
-
-    repo.consultarTodos().then(c => {
-      cli.push(c);
-    })
-
-    res.status(200).json({clientes: cli[0]});
-  } else {
+    cli = await repo.consultarTodos();
+    
+    res.status(200).json(cli);
+  } else if (req.method === "POST") {
+    
+    
+    //repo.salvar(new Cliente("Amanda", 15));
     res.status(200).json({ name: 'John Doe' })
   }
 

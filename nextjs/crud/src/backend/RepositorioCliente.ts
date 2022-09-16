@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { Cliente as ClienteDB } from ".prisma/client";
 
 import Cliente from "../core/Cliente";
 import RepositorioClienteInterface from "./RepositorioClienteInterface";
@@ -6,7 +7,7 @@ import RepositorioClienteInterface from "./RepositorioClienteInterface";
 const prisma = new PrismaClient();
 export default class RepositorioCliente implements RepositorioClienteInterface {
 
-    async salvar(cliente: Cliente): Promise<Cliente> {
+    async salvar(cliente: Cliente): Promise<ClienteDB> {
         const novoCliente = cliente.id ? (
             
             await prisma.cliente.update({
@@ -28,7 +29,7 @@ export default class RepositorioCliente implements RepositorioClienteInterface {
             })
         );
     
-        return new Cliente(novoCliente.id, novoCliente.idade, novoCliente.id);  
+        return novoCliente;  
     }
     
     async excluir(cliente: Cliente): Promise<void> {
@@ -41,12 +42,14 @@ export default class RepositorioCliente implements RepositorioClienteInterface {
         }
     }
 
-    async consultarTodos(): Promise<Cliente[]> {
-        let clientes: Cliente[] = [];
+    async consultarTodos(): Promise<ClienteDB[]> {
+        let clientes: ClienteDB[] = [];
 
-        (await prisma.cliente.findMany()).forEach(cliente => {
-            clientes.push(new Cliente(cliente.nome, cliente.idade, cliente.id));
-        });
+        clientes = await prisma.cliente.findMany();
+
+//        resultado.forEach(cliente => {
+//            clientes.push(new Cliente(cliente.nome, cliente.idade, cliente.id));
+//        });
 
         return clientes;
     }
