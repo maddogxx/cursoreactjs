@@ -4,11 +4,13 @@ const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
 const express = require('express');
 const prisma = require('@prisma/client');
+const allowCors = require('./cors');
 
 const servidor = express();
 const clientePrisma = new prisma.PrismaClient();
 
 servidor.use(bodyParser.json());
+servidor.use(allowCors);
 
 servidor.get("/atividades", async (req, res) => {
     const atividades = await clientePrisma.atividade.findMany();
