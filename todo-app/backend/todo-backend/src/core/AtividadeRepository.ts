@@ -28,6 +28,8 @@ export default class AtividadeRepository implements AtividadeRepositoryInterface
                 },
             })
         );
+
+        console.log(novaAtividade);
     
         return novaAtividade;  
     }

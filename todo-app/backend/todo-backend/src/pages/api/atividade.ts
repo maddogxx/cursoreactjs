@@ -18,16 +18,19 @@ export default async function handler(req, res) {
       atividade.concluida = corpo.concluida;
       atividade.dataCriacao = corpo.dataCriacao;
       
-      let salvo = repo.salvar(atividade);
+      let salvo = await repo.salvar(atividade);
+
+      console.log(salvo);
+
       res.status(200).json(salvo);
     } else if (req.method === "DELETE") {
       const corpo = req.body;
       let atividade: Atividade = {id: "", descricao: "", concluida: false, dataCriacao: new Date()};
       atividade.id = corpo.id;
   
-      repo.excluir(atividade);
+      await repo.excluir(atividade);
   
-      res.status(200).json("{msg: Apagado}");
+      res.status(200).json({msg: `Atividade  id(${corpo.id}) Apagada`});
     }
   
 }
