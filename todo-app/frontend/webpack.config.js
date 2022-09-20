@@ -1,11 +1,11 @@
 const webpack = require('webpack');
 
-const ExtractTextPlugin = require('mini-css-extract-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: './index.jsx',
+    entry: './src/index.jsx',
     output: {
-        path: __dirname + 'public',
+        path: __dirname + '/public',
         filename: './apps.js'
     },
     devServer: {
