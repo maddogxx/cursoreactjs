@@ -18,6 +18,19 @@ servidor.get("/ciclos", async (req, res) => {
     res.status(200).json(ciclos);
 });
 
+servidor.get("/ciclos/:id", async (req, res) => {
+    const { id } = req.params;
+    const ciclo = await CicloPagamentoService.consultar(id);
+
+    res.status(200).json(ciclo);
+});
+
+servidor.post("/ciclos", async (req, res) => {
+    const ciclo = await CicloPagamentoService.salvar(req.body);
+
+    res.status(201).json(ciclo);
+});
+
 /*
 servidor.post("/atividade", async (req, res) => {
     const { descricao } = req.body;

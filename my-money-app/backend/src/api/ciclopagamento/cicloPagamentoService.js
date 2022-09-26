@@ -18,9 +18,27 @@ async function consultar(id) {
     return resultado;
 }
 
-async function 
+async function salvar(cicloPagto) {
+    let novoCicloPagto = null;
+    let {id, nome, mes, ano} = cicloPagto;
+
+    if (id) {
+
+    } else {
+        novoCicloPagto = await clientePrisma.cicloPagamento.create({
+            data: {
+                nome: nome,
+                mes: mes,
+                ano: ano
+            },
+        });
+    }
+
+    return novoCicloPagto;
+}
 
 
 module.exports = [
-    consultar
+    consultar,
+    salvar
 ]
