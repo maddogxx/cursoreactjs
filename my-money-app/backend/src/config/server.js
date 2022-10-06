@@ -13,7 +13,12 @@ servidor.use(bodyParser.json());
 servidor.use(allowCors);
 
 servidor.get("/ciclos", async (req, res) => {
-    const ciclos = await clientePrisma.cicloPagamento.findMany();
+    const ciclos = await clientePrisma.cicloPagamento.findMany({
+        include: {
+            creditos: true,
+            debitos: true
+        }
+    });
 
     res.status(200).json(ciclos);
 });
@@ -22,7 +27,11 @@ servidor.get("/ciclos/:id", async (req, res) => {
     const { id } = req.params;
     const ciclo = await clientePrisma.cicloPagamento.findUnique({
         where: {
-            id: id
+            id: +id
+        },
+        include: {
+            creditos: true,
+            debitos: true
         }
     });
 
@@ -45,24 +54,9 @@ servidor.post("/ciclos", async (req, res) => {
 
 servidor.put("/ciclos/:id", async (req, res) => {
     const { id } = req.params;
-    let {nome, mes, ano, creditos} = req.body;
+    let {nome, mes, ano} = req.body;
 
-    let creditosCriados = [];
-    let creditosAlterados = [];
-    creditos.forEach(c => {
-        const {id, nome, valor} = c;
-
-        if (id) {
-            creditosAlterados.push(c);
-        } else {
-            creditosCriados.push(c);
-        }
-
-    });
-
-    console.log(creditosCriados);
-
-    await clientePrisma.cicloPagamento.update({
+    const novoCicloPagto = await clientePrisma.cicloPagamento.update({
         where: {
             id: +id
         },
@@ -73,65 +67,54 @@ servidor.put("/ciclos/:id", async (req, res) => {
         }
     });
 
+    res.status(200).json(novoCicloPagto);
+});
 
-    const novoCicloPagto = await clientePrisma.cicloPagamento.findUnique({
+servidor.delete("/ciclos/:id", async (req, res) => {
+    const { id } = req.params;
+
+    const novoCicloPagto = await clientePrisma.cicloPagamento.delete({
+        where: {
+            id: +id
+        }
+    });
+
+    res.status(200).json(novoCicloPagto);
+});
+
+servidor.post("/ciclos/:id/creditos", async (req, res) => {
+    const { id } = req.params;
+    const {nome, valor} = req.body;
+
+    const novoCredito = await clientePrisma.credito.create({
+        data: {
+            nome: nome,
+            valor: +valor,
+            idCicloPagamento: +id
+        },
+    });
+
+    res.status(201).json(novoCredito);
+});
+
+servidor.put("/ciclos/creditos/:id", async (req, res) => {
+    const { id } = req.params;
+    const {nome, valor} = req.body;
+
+    const novoCredito = await clientePrisma.credito.update({
         where: {
             id: +id
         },
-        include: {
-            creditos: true,
-            debitos: true
-        }
-    }) ;
-
-    res.status(201).json(novoCicloPagto);
-});
-
-
-/*
-servidor.post("/atividade", async (req, res) => {
-    const { descricao } = req.body;
-
-    const atividade = await clientePrisma.atividade.create({
         data: {
-          id: uuidv4(),
-          descricao: descricao,
-          dataCriacao: new Date()
+            nome: nome,
+            valor: +valor,
         },
     });
 
-    res.status(201).json(atividade);
+    res.status(200).json(novoCredito);
 });
 
-servidor.put("/atividade/:id", async (req, res) => {
-    const { id } = req.params;
-    const { descricao, concluida } = req.body;
 
-    const atividade = await clientePrisma.atividade.update({
-        where: {
-            id: id
-        },
-        data: {
-          descricao: descricao,
-          concluida: concluida
-        },
-    });
-
-    res.status(200).json(atividade);
-});
-
-servidor.delete("/atividade/:id", async (req, res) => {
-    const { id } = req.params;
-
-    const operacao = await clientePrisma.atividade.delete({
-        where: {
-            id: id
-        }
-    });
-
-    res.status(200).json(operacao);
-});
-*/
 
 servidor.listen(port, function() {
     console.log(`BACKEND ONLINE na porta ${port}`);
