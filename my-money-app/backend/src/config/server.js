@@ -114,7 +114,63 @@ servidor.put("/ciclos/creditos/:id", async (req, res) => {
     res.status(200).json(novoCredito);
 });
 
+servidor.delete("/ciclos/creditos/:id", async (req, res) => {
+    const { id } = req.params;
 
+    const novoCredito = await clientePrisma.credito.delete({
+        where: {
+            id: +id
+        }
+    });
+
+    res.status(200).json(novoCredito);
+});
+
+servidor.post("/ciclos/:id/debitos", async (req, res) => {
+    const { id } = req.params;
+    const {nome, valor, status} = req.body;
+
+    const novoDebito = await clientePrisma.debito.create({
+        data: {
+            nome: nome,
+            valor: +valor,
+            status: status,
+            idCicloPagamento: +id
+        },
+    });
+
+    res.status(201).json(novoDebito);
+});
+
+servidor.put("/ciclos/debitos/:id", async (req, res) => {
+    const { id } = req.params;
+    const {nome, valor, status} = req.body;
+
+    const novoDebito = await clientePrisma.debito.update({
+        where: {
+            id: +id
+        },
+        data: {
+            nome: nome,
+            valor: +valor,
+            status: status
+        },
+    });
+
+    res.status(200).json(novoDebito);
+});
+
+servidor.delete("/ciclos/debitos/:id", async (req, res) => {
+    const { id } = req.params;
+
+    const novoDebito = await clientePrisma.debito.delete({
+        where: {
+            id: +id
+        }
+    });
+
+    res.status(200).json(novoDebito);
+});
 
 servidor.listen(port, function() {
     console.log(`BACKEND ONLINE na porta ${port}`);
